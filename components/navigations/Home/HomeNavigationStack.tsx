@@ -3,6 +3,8 @@ import { AddScreen } from './AddScreen/AddScreen';
 import { CalculationScreen } from './AddScreen/CalculationScreen';
 import { HomeNavigationStackParams } from './HomeNavigationStackParams';
 import { HomeScreen } from './HomeScreen';
+import { SubstractionCalculationScreen } from './SubstractionScreen/SubstractionCalculationScreen';
+import { SubstractionScreen } from './SubstractionScreen/SubstractionScreen';
 
 const Stack = createNativeStackNavigator<HomeNavigationStackParams>();
 
@@ -10,8 +12,16 @@ export const HomeNavigationStack: React.FC = () => {
     return (
         <Stack.Navigator>
             <Stack.Screen name="HomeScreen" component={HomeScreen} options={noHeader}/>
-            <Stack.Screen name="AddScreen" component={AddScreen} options={addScreenOption}/>
-            <Stack.Screen name="CalculationScreen" component={CalculationScreen} options={calculationScreenOption}/>
+            {/* Addition Group */}
+            <Stack.Group>
+                <Stack.Screen name="AddScreen" component={AddScreen} options={addScreenOption}/>
+                <Stack.Screen name="CalculationScreen" component={CalculationScreen} options={calculationScreenOption}/>
+            </Stack.Group>
+            {/* Substraction Group */}
+            <Stack.Group>
+                <Stack.Screen name="SubstractionScreen" component={SubstractionScreen} options={substractionScreenOption}/>
+                <Stack.Screen name="SubstractionCalculationScreen" component={SubstractionCalculationScreen} options={substractionCalculationOption}/>
+            </Stack.Group>
         </Stack.Navigator>
     );
 };
@@ -31,6 +41,24 @@ const addScreenOption: NativeStackNavigationOptions = {
 
 const calculationScreenOption: NativeStackNavigationOptions = {
     title: 'Soal Pertambahan',
+    headerTitleAlign: 'center',
+    headerShadowVisible: false,
+    headerTitleStyle: {
+        color: '#333',
+    },
+};
+
+const substractionScreenOption: NativeStackNavigationOptions = {
+    title: 'Pengurangan',
+    headerTitleAlign: 'center',
+    headerShadowVisible: false,
+    headerTitleStyle: {
+        color: '#333',
+    },
+};
+
+const substractionCalculationOption: NativeStackNavigationOptions = {
+    title: 'Soal Pengurangan',
     headerTitleAlign: 'center',
     headerShadowVisible: false,
     headerTitleStyle: {

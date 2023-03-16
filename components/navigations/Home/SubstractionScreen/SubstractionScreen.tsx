@@ -1,12 +1,12 @@
 import { OutlinedTextInput } from '@Components/OutlinedTextInput';
 import { HomeNavigationStackScreenProps } from '@Components/StackScreenProps';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect, useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Text, TouchableOpacity, View } from 'react-native';
 import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect, useState } from 'react';
 
-export const AddScreen: React.FC<HomeNavigationStackScreenProps<'AddScreen'>> = ({navigation}) => {
+export const SubstractionScreen: React.FC<HomeNavigationStackScreenProps<'SubstractionScreen'>> = ({navigation}) => {
     const [minNumber, setMinNumber] = useState<number>(1);
     const additionFormSchema = z.object({
         loops: z.string({
@@ -18,12 +18,12 @@ export const AddScreen: React.FC<HomeNavigationStackScreenProps<'AddScreen'>> = 
         .refine(i => i === '' ? false : true, { message: 'Harap masukkan jumlah soal' })
         ,
         minimumNumber: z.string({
-            required_error: 'Harap masukkan minimal pertambahan',
-        }).refine(i => i === '' ? false : true, { message: 'Harap masukkan minimal pertambahan' }),
+            required_error: 'Harap masukkan minimal pengurangan',
+        }).refine(i => i === '' ? false : true, { message: 'Harap masukkan minimal pengurangan' }),
         maximumNumber: z.string({
-            required_error: 'Harap masukkan maksimal pertambahan',
-        }).refine(i => i === '' ? false : true, { message: 'Harap masukkan maksimal pertambahan' })
-        .refine(i => Number(i) < minNumber ? false : true, { message: 'Maksimal pertambahan tidak bisa kurang dari minimal pertambahan'})
+            required_error: 'Harap masukkan maksimal pengurangan',
+        }).refine(i => i === '' ? false : true, { message: 'Harap masukkan maksimal pengurangan' })
+        .refine(i => Number(i) < minNumber ? false : true, { message: 'Maksimal pengurangan tidak bisa kurang dari minimal pengurangan'})
         ,
     });
 
@@ -34,11 +34,10 @@ export const AddScreen: React.FC<HomeNavigationStackScreenProps<'AddScreen'>> = 
     });
 
     function onSubmit(form: NewAdditionForm) {
-        navigation.navigate('CalculationScreen', {
+        navigation.navigate('SubstractionCalculationScreen', {
             maximumNumber: form.maximumNumber,
             loops: form.loops,
             minimumNumber: form.minimumNumber,
-            runLoop: true,
         });
     }
 
@@ -63,11 +62,11 @@ export const AddScreen: React.FC<HomeNavigationStackScreenProps<'AddScreen'>> = 
                 {errors.loops && <Text className="mt-2 text-center text-red-600">{errors.loops.message}</Text>}
             </View>
             <View className="mt-6">
-                <Text className="ml-2 font-bold">Minimal pertambahan</Text>
+                <Text className="ml-2 font-bold">Minimal pengurangan</Text>
                 <Controller control={control} name="minimumNumber" render={({field: {onChange, value}}) => (
                     <OutlinedTextInput
                         keyboardType="number-pad"
-                        placeholder="Masukkan angka minimal pertambahan"
+                        placeholder="Masukkan angka minimal pengurangan"
                         onChangeText={onChange}
                         value={value}
                     />
@@ -75,16 +74,16 @@ export const AddScreen: React.FC<HomeNavigationStackScreenProps<'AddScreen'>> = 
                 {errors.minimumNumber && <Text className="mt-2 text-center text-red-600">{errors.minimumNumber.message}</Text>}
             </View>
             <View className="mt-6">
-                <Text className="ml-2 font-bold">Maksimal pertambahan</Text>
+                <Text className="ml-2 font-bold">Maksimal pengurangan</Text>
                 <Controller control={control} name="maximumNumber" render={({field: {onChange, value}}) => (
                     <OutlinedTextInput
                         keyboardType="number-pad"
-                        placeholder="Masukkan angka maksimal pertambahan"
+                        placeholder="Masukkan angka maksimal pengurangan"
                         onChangeText={onChange}
                         value={value}
                     />
                 )}/>
-                <Text className="ml-2 mt-2 text-slate-400">* angka ini akan ditambahkan dengan minimal pertambahan</Text>
+                <Text className="ml-2 mt-2 text-slate-400">* angka ini akan ditambahkan dengan minimal pengurangan</Text>
                 {errors.maximumNumber && <Text className="mt-2 text-center text-red-600">{errors.maximumNumber.message}</Text>}
             </View>
 

@@ -3,7 +3,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, View } from 'react-native';
 import { Provider as PaperProvider, DefaultTheme } from 'react-native-paper';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import { HomeNavigationStack } from './components/navigations/Home/HomeNavigationStack';
 import { HomeNavigationStackParams } from './components/navigations/Home/HomeNavigationStackParams';
 
@@ -18,14 +18,16 @@ export default function App() {
                 background: 'white',
             },
         }}>
-            <SafeAreaProvider>
-                <NavigationContainer ref={navigationRef}>
-                    <View style={styles.container}>
-                        <HomeNavigationStack/>
-                        <StatusBar animated={true} style="auto"/>
-                    </View>
-                </NavigationContainer>
-            </SafeAreaProvider>
+            <SafeAreaView>
+                <SafeAreaProvider>
+                    <NavigationContainer ref={navigationRef}>
+                        <View style={styles.container}>
+                            <HomeNavigationStack/>
+                            <StatusBar animated={true} style="auto"/>
+                        </View>
+                    </NavigationContainer>
+                </SafeAreaProvider>
+            </SafeAreaView>
         </PaperProvider>
     );
 }

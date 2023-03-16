@@ -4,18 +4,18 @@ import { useState } from 'react';
 import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 import { Entypo } from '@expo/vector-icons';
 
-interface Calculation {
+export interface Answers {
+    id: number,
+    answer: string,
+}
+
+export interface Calculation {
     loops: number,
     minNumber: number,
     maxNumber: number,
 }
 
-interface Answers {
-    id: number,
-    answer: string,
-}
-
-export const CalculationScreen: React.FC<HomeNavigationStackScreenProps<'CalculationScreen'>> = ({route}) => {
+export const SubstractionCalculationScreen: React.FC<HomeNavigationStackScreenProps<'SubstractionCalculationScreen'>> = ({route}) => {
     const { loops, minimumNumber, maximumNumber } = route.params;
     const [ inputAnswer, setInputAnswer ] = useState<Answers[]>([]);
     const [ question ] = useState<Calculation[]>([]);
@@ -25,6 +25,8 @@ export const CalculationScreen: React.FC<HomeNavigationStackScreenProps<'Calcula
 
     function generateData(){
         for (let i = 1; i <= Number(loops); i++){
+            // const maxNum = Math.floor(Math.random() * Number(maximumNumber)) + Number(minimumNumber);
+            // const {minNum, maxNum} = getMinNumber();
             const maxNum = Math.floor(Math.random() * Number(maximumNumber)) + Number(minimumNumber);
             const minNum = Math.floor(Math.random() * Number(maxNum)) + Number(1);
             const newData: Calculation = {
@@ -41,7 +43,7 @@ export const CalculationScreen: React.FC<HomeNavigationStackScreenProps<'Calcula
         for (let i = 0; i < Number(loops); i++){
             const minNumber: number = datas[i]?.minNumber;
             const maxNumber: number = datas[i]?.maxNumber;
-            const result = minNumber + maxNumber;
+            const result = maxNumber - minNumber;
             answer.push(result);
         }
         return answer;
@@ -69,6 +71,8 @@ export const CalculationScreen: React.FC<HomeNavigationStackScreenProps<'Calcula
         );
     }
 
+    console.log(question);
+
     return (
         <View className="flex-1 bg-white">
             {!ready && renderReadyButton()}
@@ -78,7 +82,7 @@ export const CalculationScreen: React.FC<HomeNavigationStackScreenProps<'Calcula
                 <>
                     <View className="ml-4 flex-row mt-6">
                         <Text className="text-xl mt-2">{item.loops}.</Text>
-                        <Text className="text-xl mt-2 ml-4">{item.minNumber} + {item.maxNumber} = </Text>
+                        <Text className="text-xl mt-2 ml-4">{item.maxNumber} - {item.minNumber} = </Text>
                         <OutlinedTextInput
                             className="mt-2 w-[30%]"
                             keyboardType="number-pad"

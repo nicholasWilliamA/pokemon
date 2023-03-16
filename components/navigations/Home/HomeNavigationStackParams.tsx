@@ -7,4 +7,12 @@ export type HomeNavigationStackParams = {
         maximumNumber: string,
         runLoop: boolean,
     }
+    SubstractionScreen: undefined,
+    SubstractionCalculationScreen: Calculation,
+}
+
+interface Calculation {
+    loops: string,
+    minimumNumber: string,
+    maximumNumber: string,
 }
