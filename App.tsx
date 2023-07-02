@@ -18,16 +18,14 @@ export default function App() {
                 background: 'white',
             },
         }}>
-            <SafeAreaView>
-                <SafeAreaProvider>
-                    <NavigationContainer ref={navigationRef}>
-                        <View style={styles.container}>
-                            <HomeNavigationStack/>
-                            <StatusBar animated={true} style="auto"/>
-                        </View>
-                    </NavigationContainer>
-                </SafeAreaProvider>
-            </SafeAreaView>
+            <SafeAreaProvider>
+                <NavigationContainer ref={navigationRef}>
+                    <View style={styles.container}>
+                        <HomeNavigationStack/>
+                        <StatusBar animated={true} style="auto"/>
+                    </View>
+                </NavigationContainer>
+            </SafeAreaProvider>
         </PaperProvider>
     );
 }

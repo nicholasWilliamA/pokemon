@@ -9,6 +9,8 @@ export type HomeNavigationStackParams = {
     }
     SubstractionScreen: undefined,
     SubstractionCalculationScreen: Calculation,
+    MultiplicationsScreen: undefined,
+    MultiplicationsCalculationScreen: Calculation,
 }
 
 interface Calculation {

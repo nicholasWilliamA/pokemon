@@ -3,6 +3,8 @@ import { AddScreen } from './AddScreen/AddScreen';
 import { CalculationScreen } from './AddScreen/CalculationScreen';
 import { HomeNavigationStackParams } from './HomeNavigationStackParams';
 import { HomeScreen } from './HomeScreen';
+import { MultiplicationsCalculationScreen } from './MultiplicationsScreen/MultiplicationsCalculationScreen';
+import { MultiplicationsScreen } from './MultiplicationsScreen/MultiplicationsScreen';
 import { SubstractionCalculationScreen } from './SubstractionScreen/SubstractionCalculationScreen';
 import { SubstractionScreen } from './SubstractionScreen/SubstractionScreen';
 
@@ -21,6 +23,11 @@ export const HomeNavigationStack: React.FC = () => {
             <Stack.Group>
                 <Stack.Screen name="SubstractionScreen" component={SubstractionScreen} options={substractionScreenOption}/>
                 <Stack.Screen name="SubstractionCalculationScreen" component={SubstractionCalculationScreen} options={substractionCalculationOption}/>
+            </Stack.Group>
+            {/* Multiplication Group */}
+            <Stack.Group>
+                <Stack.Screen name="MultiplicationsScreen" component={MultiplicationsScreen} options={multiplicationsScreenOption}/>
+                <Stack.Screen name="MultiplicationsCalculationScreen" component={MultiplicationsCalculationScreen} options={multiplicationsCalculationOption}/>
             </Stack.Group>
         </Stack.Navigator>
     );
@@ -59,6 +66,24 @@ const substractionScreenOption: NativeStackNavigationOptions = {
 
 const substractionCalculationOption: NativeStackNavigationOptions = {
     title: 'Soal Pengurangan',
+    headerTitleAlign: 'center',
+    headerShadowVisible: false,
+    headerTitleStyle: {
+        color: '#333',
+    },
+};
+
+const multiplicationsScreenOption: NativeStackNavigationOptions = {
+    title: 'Perkalian',
+    headerTitleAlign: 'center',
+    headerShadowVisible: false,
+    headerTitleStyle: {
+        color: '#333',
+    },
+};
+
+const multiplicationsCalculationOption: NativeStackNavigationOptions = {
+    title: 'Soal Perkalian',
     headerTitleAlign: 'center',
     headerShadowVisible: false,
     headerTitleStyle: {

@@ -10,7 +10,7 @@ export const HomeScreen: React.FC<HomeNavigationStackScreenProps<'HomeScreen'>> 
                 <MathematicalCard label="Pengurangan" icon="minus" onPress={() => navigation.navigate('SubstractionScreen')}/>
             </View>
             <View className="mt-[30%] flex-row justify-evenly">
-                <MathematicalCard label="Perkalian" icon="cross"/>
+                <MathematicalCard label="Perkalian" icon="cross" onPress={() => navigation.navigate('MultiplicationsScreen')}/>
                 <MathematicalCard label="Pembagian" divide={true}/>
             </View>
         </View>
