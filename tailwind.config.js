@@ -5,7 +5,12 @@ module.exports = {
     './components/**/*.{js,jsx,ts,tsx}',
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'ttCommons': ['TTCommons'],
+        'ttCommonsBold': ['TTCommonsBold'],
+      },
+    },
   },
   plugins: [],
 };
